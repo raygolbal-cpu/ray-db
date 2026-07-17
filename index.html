@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pacífica | Producción de Campañas</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-mode="local">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <img class="brand" src="assets/logo-pacifica-blanco.png" alt="Pacífica Resort Ixtapa">
+      <div class="side-copy"><span>VERANO 2026</span><strong>Centro de producción</strong><small>Actualización acumulativa</small></div>
+      <nav><button class="nav-active">◫ Resumen ejecutivo</button><button id="goExecutives">⌁ Ejecutivos</button><button id="goFinance">$ Financiamiento</button></nav>
+      <div class="import-card">
+        <strong>Actualizar información</strong>
+        <p>Carga el siguiente Excel. Los registros existentes se actualizan y los nuevos se agregan.</p>
+        <input id="excelInput" type="file" accept=".xlsx,.xls" hidden>
+        <button class="primary" id="importBtn">Cargar Excel</button>
+        <button class="ghost" id="clearBtn">Restablecer datos</button>
+        <div id="importStatus" class="status">Datos iniciales listos</div>
+      </div>
+    </aside>
+    <main>
+      <header><div><p class="eyebrow">CONTROL OPERATIVO</p><h1>Producción diaria de campañas</h1><p class="subtitle">Campaña 2023 antes vs. campaña 2024 después</p></div><div class="updated"><span>Última actualización</span><strong id="updatedAt">—</strong></div></header>
+      <section class="filters">
+        <label>Campaña<select id="campaignFilter"><option value="">Todas</option></select></label>
+        <label>Oficina / equipo<select id="officeFilter"><option value="">Todos</option></select></label>
+        <label>Ejecutivo<select id="executiveFilter"><option value="">Todos</option></select></label>
+        <label>Semana<select id="weekFilter"><option value="">Todas</option></select></label>
+        <label>Día<input id="dayFilter" type="date"></label>
+        <button id="resetFilters" class="filter-reset">Limpiar filtros</button>
+      </section>
+      <section class="kpis">
+        <article><span>Reservaciones</span><strong id="kpiReservations">0</strong><small id="kpiReservationsMeta">Producción filtrada</small></article>
+        <article><span>Productividad</span><strong id="kpiProductivity">0%</strong><small>RSV / contratos asignados</small></article>
+        <article><span>Financiamiento</span><strong id="kpiFinance">$0</strong><small id="kpiFinanceMeta">Ingresos acumulados</small></article>
+        <article class="health-card" id="healthCard"><span>Salud de producción</span><strong id="kpiHealth">Sin datos</strong><small id="healthMeta">Esperando información</small></article>
+      </section>
+      <section class="health-strip">
+        <div class="health-label"><span>Diagnóstico de salud</span><strong id="healthTitle">—</strong></div>
+        <div class="health-meter"><i id="healthMeter"></i></div>
+        <p id="healthNarrative">Carga información para generar el diagnóstico.</p>
+      </section>
+      <section class="grid two">
+        <article class="panel"><div class="panel-title"><div><span>PRODUCCIÓN</span><h2>Tendencia diaria por campaña</h2></div><div class="legend"><i class="dot cyan"></i>2023 antes <i class="dot green"></i>2024 después</div></div><div class="chart-wrap"><canvas id="dailyChart"></canvas></div></article>
+        <article class="panel" id="financeSection"><div class="panel-title"><div><span>FINANCIAMIENTO</span><h2>Ingresos por oficina</h2></div></div><div class="chart-wrap"><canvas id="financeChart"></canvas></div></article>
+      </section>
+      <section class="panel" id="executivesSection"><div class="panel-title"><div><span>DESEMPEÑO</span><h2>Productividad por ejecutivo</h2></div><span class="badge" id="executiveCount">0 ejecutivos</span></div><div class="table-scroll"><table><thead><tr><th>Ejecutivo</th><th>Oficina</th><th>Campaña</th><th>Contratos</th><th>RSV</th><th>Productividad</th><th>Salud</th></tr></thead><tbody id="executiveTable"></tbody></table></div></section>
+      <footer>Pacífica Resort Ixtapa · Dashboard interno de producción</footer>
+    </main>
+  </div>
+  <script src="assets/vendor/xlsx.full.min.js"></script><script src="assets/vendor/chart.umd.js"></script><script src="assets/app.js"></script>
+</body></html>
